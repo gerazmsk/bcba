@@ -142,12 +142,12 @@ export async function generateBioPDF(profile: Profile): Promise<void> {
       allowTaint: false,
       logging: false,
       letterRendering: true,
-      width: 794, // A4 width in pixels at 96 DPI
-      height: 1123 // A4 height
+      width: 816, // Letter width in pixels at 96 DPI
+      height: 1056 // Letter height
     },
     jsPDF: { 
       unit: 'mm' as const, 
-      format: 'a4' as const, 
+      format: [216, 279], // Letter size in mm (8.5" x 11")
       orientation: 'portrait' as const 
     }
   };
@@ -157,8 +157,8 @@ export async function generateBioPDF(profile: Profile): Promise<void> {
   element.style.position = 'fixed';
   element.style.top = '0';
   element.style.left = '0';
-  element.style.width = '794px';
-  element.style.height = '1123px';
+  element.style.width = '816px';
+  element.style.height = '1056px';
   element.style.padding = '0';
   element.style.margin = '0';
   element.style.overflow = 'hidden';
