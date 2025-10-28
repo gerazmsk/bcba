@@ -11,6 +11,19 @@ export default async function PublicProfilePage({
   const { id } = await params;
   
   try {
+    // Check if env vars are set
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      console.error('Missing Supabase credentials');
+      return (
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-8">
+            <h1 className="text-2xl font-bold text-red-900 mb-4">Configuration Error</h1>
+            <p className="text-red-700">Supabase credentials are not configured. Please check your environment variables.</p>
+          </div>
+        </div>
+      );
+    }
+    
     const supabase = createServerComponentClient();
     const { data: profile, error } = await supabase
       .from('profiles')
