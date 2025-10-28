@@ -35,14 +35,14 @@ const TEMPLATE_HTML = `<!doctype html>
     .page{width:612px;padding:20px;margin:0 auto;box-sizing:border-box}
     h1,h2,h3,p{margin:0}
     img{display:block}
-    .top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:20px}
+    .header-row{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:20px}
     .brand{width:255px;height:99px;display:flex;align-items:center;justify-content:center;overflow:hidden}
     .brand-logo{width:255px;height:99px;object-fit:contain}
     .name-section{width:306px;height:128px;display:flex;flex-direction:column;justify-content:center}
     .meet{margin-top:8px;font-size:11px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
     .name{margin-top:6px;font-size:36px;font-weight:800;line-height:1.05}
     .bcba{margin-top:4px;font-size:22px;font-weight:800;color:var(--brand-blue)}
-    .headshot-wrap{width:248px;height:234px;display:flex;align-items:center;justify-content:center}
+    .photo-container{width:248px;height:234px;display:flex;align-items:center;justify-content:center}
     .headshot{width:180px;height:180px;object-fit:cover;border-radius:16px;box-shadow:var(--shadow)}
     .section-title{margin:20px 0 12px;font-weight:700;font-size:16px}
     .about{width:612px;height:279px;font-size:13px;line-height:1.6;color:#333;text-align:justify;column-count:2;column-gap:20px;column-fill:auto;overflow:hidden}
@@ -57,17 +57,17 @@ const TEMPLATE_HTML = `<!doctype html>
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="top">
-      <div class="brand">
-        <img class="brand-logo" src="{{logo_url}}" alt="Brand logo" />
-      </div>
+    <div class="page">
+    <div class="brand">
+      <img class="brand-logo" src="{{logo_url}}" alt="Brand logo" />
+    </div>
+    <div class="header-row">
       <div class="name-section">
         <div class="meet">Meet your therapist</div>
         <h1 class="name">{{first_name}} {{last_name}}</h1>
         <div class="bcba">BCBA</div>
       </div>
-      <div class="headshot-wrap">
+      <div class="photo-container">
         <img class="headshot" src="{{headshot_url}}" alt="{{first_name}} {{last_name}}" />
       </div>
     </div>
