@@ -126,7 +126,10 @@ export default function DashboardProfilePage() {
       // Update existing profile
       const { error: updateError } = await supabase
         .from('profiles')
-        .update(formData)
+        .update({
+          ...formData,
+          logo_url: avatarUrl || 'https://cdn.example.com/default-logo.png'
+        })
         .eq('id', session.user.id);
       error = updateError;
     } else {
@@ -135,7 +138,8 @@ export default function DashboardProfilePage() {
         .from('profiles')
         .insert({
           id: session.user.id,
-          ...formData
+          ...formData,
+          logo_url: avatarUrl || 'https://cdn.example.com/default-logo.png'
         });
       error = insertError;
     }
@@ -175,6 +179,26 @@ export default function DashboardProfilePage() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Photo Upload Section */}
+          <div className="flex flex-col items-center gap-4">
+            <img
+              src={avatarUrl || 'https://cdn.example.com/default-logo.png'}
+              alt="Profile"
+              className="w-32 h-32 rounded-full object-cover border-4 border-gray-200"
+              onError={(e) => {
+                e.currentTarget.src = 'https://cdn.example.com/default-logo.png';
+              }}
+            />
+            <Input
+              type="url"
+              label="Profile Photo URL (optional)"
+              value={avatarUrl}
+              onChange={(e) => setAvatarUrl(e.target.value)}
+              placeholder="https://example.com/your-photo.jpg"
+            />
+            <p className="text-sm text-gray-500">Paste a direct URL to your photo</p>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-6">
             <Input
               type="text"
