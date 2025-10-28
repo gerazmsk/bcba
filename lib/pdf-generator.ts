@@ -137,7 +137,7 @@ export async function generateBioPDF(profile: Profile): Promise<void> {
     filename: `${profile.first_name}_${profile.last_name}_BIO.pdf`,
     image: { type: 'jpeg' as const, quality: 0.98 },
     html2canvas: { scale: 2 },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
   };
 
   const element = document.createElement('div');
