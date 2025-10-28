@@ -127,6 +127,10 @@ function renderHtmlFromProfile(p: Profile, defaultLogo: string) {
     .replaceAll('{{favorite_food}}', esc(p.favorite_food || '—'));
 }
 
+export function getBioHTML(profile: Profile): string {
+  return renderHtmlFromProfile(profile, DEFAULT_LOGO);
+}
+
 export async function generateBioPDF(profile: Profile): Promise<void> {
   const html = renderHtmlFromProfile(profile, DEFAULT_LOGO);
   
