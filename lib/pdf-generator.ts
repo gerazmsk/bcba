@@ -133,23 +133,43 @@ export async function generateBioPDF(profile: Profile): Promise<void> {
   const html = renderHtmlFromProfile(profile, DEFAULT_LOGO);
   
   const opt = {
-    margin: 0,
+    margin: [0, 0, 0, 0],
     filename: `${profile.first_name}_${profile.last_name}_BIO.pdf`,
     image: { type: 'jpeg' as const, quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
+    html2canvas: { 
+      scale: 2,
+      useCORS: true,
+      logging: false,
+      letterRendering: true
+    },
+    jsPDF: { 
+      unit: 'mm', 
+      format: 'a4', 
+      orientation: 'portrait' as const 
+    }
   };
 
   const element = document.createElement('div');
   element.innerHTML = html;
   element.style.position = 'absolute';
   element.style.left = '-9999px';
+  element.style.width = '210mm';
+  element.style.padding = '0';
   document.body.appendChild(element);
 
+  // Wait a bit for images to load
+  await new Promise(resolve => setTimeout(resolve, 500));
+
   try {
-    await html2pdf().set(opt).from(element).save();
+    const worker = html2pdf().set(opt).from(element);
+    await worker.save();
+  } catch (error) {
+    console.error('PDF generation error:', error);
+    throw error;
   } finally {
-    document.body.removeChild(element);
+    if (document.body.contains(element)) {
+      document.body.removeChild(element);
+    }
   }
 }
 
