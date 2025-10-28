@@ -158,10 +158,11 @@ export async function generateBioPDF(profile: Profile): Promise<void> {
   element.style.position = 'fixed';
   element.style.top = '0';
   element.style.left = '0';
+  element.style.right = '0';
   element.style.width = '816px';
+  element.style.margin = '0 auto';
   element.style.height = '1056px';
   element.style.padding = '0';
-  element.style.margin = '0';
   element.style.overflow = 'hidden';
   element.style.zIndex = '9999';
   element.style.background = 'white';
