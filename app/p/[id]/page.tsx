@@ -1,16 +1,19 @@
 import { notFound } from 'next/navigation';
 import { createServerComponentClient } from '@/lib/supabaseClient';
 
+export const dynamic = 'force-dynamic';
+
 export default async function PublicProfilePage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const supabase = createServerComponentClient();
   const { data: profile, error } = await supabase
     .from('profiles')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', id)
     .single();
 
   // Check if profile exists and is public
