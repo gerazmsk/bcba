@@ -20,56 +20,56 @@ const TEMPLATE_HTML = `<!doctype html>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root{
-      --brand-blue:#37A0C8;
-      --accent-coral:#F15A59;
-      --ink:#1F2937;
-      --muted:#6B7280;
-      --paper:#FFFFFF;
-      --footer:#0F172A;
-      --radius:12px;
-      --shadow:0 0 0 1px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.06);
+      --ink:#2B2936;
+      --text:#333741;
+      --muted:#8A8FA0;
+      --bcba:#2AA0C6;
+      --band:#E65E61;
+      --footer:#35A3C7;
+      --paper:#ffffff;
+      --radius:14px;
+      --shadow:0 10px 24px rgba(0,0,0,.06);
+      --maxw:860px;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--paper);color:var(--ink)}
-    body{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif}
-    .page{width:612px;padding:20px;margin:0 auto;box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--paper);color:var(--text)}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,"Noto Sans",sans-serif}
+    .page{margin:0 auto;max-width:var(--maxw);padding:28px 28px 22px}
+    img{display:block;max-width:100%}
     h1,h2,h3,p{margin:0}
-    img{display:block}
-    .header-row{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:20px}
-    .brand{width:255px;height:99px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .brand-logo{width:255px;height:99px;object-fit:contain}
-    .name-section{width:306px;height:128px;display:flex;flex-direction:column;justify-content:center}
-    .meet{margin-top:8px;font-size:11px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
-    .name{margin-top:6px;font-size:36px;font-weight:800;line-height:1.05}
-    .bcba{margin-top:4px;font-size:22px;font-weight:800;color:var(--brand-blue)}
-    .photo-container{width:248px;height:234px;display:flex;align-items:center;justify-content:center}
-    .headshot{width:180px;height:180px;object-fit:cover;border-radius:16px;box-shadow:var(--shadow)}
-    .section-title{margin:20px 0 12px;font-weight:700;font-size:16px}
-    .about{width:612px;height:279px;font-size:13px;line-height:1.6;color:#333;text-align:justify;column-count:2;column-gap:20px;column-fill:auto;overflow:hidden}
-    .band{width:612px;height:258px;margin-top:20px;background:var(--accent-coral);color:#fff;border-radius:14px;padding:20px;overflow:hidden}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 20px;height:100%;width:100%}
-    .chip-label{font-size:10px;text-transform:uppercase;opacity:.95;letter-spacing:.4px;font-weight:600}
-    .chip-value{margin-top:4px;font-size:15px;font-weight:700;line-height:1.3}
-    .footer{margin-top:20px;background:var(--footer);color:#fff;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
-    .foot-left{font-size:13px;font-weight:700}
-    .foot-right{font-size:12px;opacity:.95}
+    .header{display:grid;grid-template-columns:1fr auto;align-items:start;gap:24px;margin-bottom:18px}
+    .logo{width:190px;height:auto}
+    .meet{margin-top:12px;font-size:12px;color:var(--muted);letter-spacing:.3px}
+    .name{margin-top:6px;font-size:44px;line-height:1.04;font-weight:800;color:var(--ink)}
+    .bcba{margin-top:4px;font-size:28px;font-weight:800;color:var(--ink)}
+    .bcba strong{color:var(--bcba)}
+    .portrait{width:140px;height:140px;object-fit:cover;border-radius:16px;box-shadow:var(--shadow)}
+    .section-title{margin:18px 0 10px;font-weight:800;color:var(--ink)}
+    .about{column-count:2;column-gap:28px;font-size:13px;line-height:1.6;text-align:justify}
+    @media (max-width:720px){.about{column-count:1}}
+    .band{margin-top:24px;background:var(--band);color:#fff;border-radius:var(--radius);padding:22px}
+    .grid{display:grid;gap:20px 24px;grid-template-columns:repeat(3,1fr)}
+    @media (max-width:720px){.grid{grid-template-columns:1fr}}
+    .chip-label{font-size:12px;text-transform:uppercase;letter-spacing:.4px;opacity:.95}
+    .chip-value{margin-top:6px;font-size:20px;line-height:1.25;font-weight:800}
+    .footer{margin-top:26px;background:var(--footer);color:#fff;border-radius:10px;padding:12px 16px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+    .foot-left{font-weight:800;font-size:14px}
+    .foot-center{display:flex;align-items:center;justify-content:center}
+    .foot-right{justify-self:end;font-size:13px}
+    .butterfly{width:20px;height:20px;fill:#fff;opacity:.95}
     @page{margin:10mm}
   </style>
 </head>
 <body>
-    <div class="page">
-    <div class="brand">
-      <img class="brand-logo" src="{{logo_url}}" alt="Brand logo" />
-    </div>
-    <div class="header-row">
-      <div class="name-section">
+  <div class="page">
+    <div class="header">
+      <div>
+        <img class="logo" src="{{logo_url}}" alt="Butterfly Effects logo" />
         <div class="meet">Meet your therapist</div>
         <h1 class="name">{{first_name}} {{last_name}}</h1>
-        <div class="bcba">BCBA</div>
+        <div class="bcba"><strong>BCBA</strong></div>
       </div>
-      <div class="photo-container">
-        <img class="headshot" src="{{headshot_url}}" alt="{{first_name}} {{last_name}}" />
-      </div>
+      <img class="portrait" src="{{headshot_url}}" alt="{{first_name}} {{last_name}}" />
     </div>
     <h3 class="section-title">About</h3>
     <div class="about">
@@ -104,7 +104,12 @@ const TEMPLATE_HTML = `<!doctype html>
       </div>
     </div>
     <div class="footer">
-      <div class="foot-left">(888) 880-9244</div>
+      <div class="foot-left">(888) 880–9244</div>
+      <div class="foot-center">
+        <svg class="butterfly" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 11c1.7-4.5 5.8-6.8 8.2-5.1 2.2 1.5 1.4 5-2.6 6.6 3.8.9 5.4 4 3.6 5.9-1.9 2-5.7.4-7.8-4-2.1 4.4-5.9 6-7.8 4-1.8-1.9-.2-5 3.6-5.9-4-1.6-4.8-5.1-2.6-6.6C6.2 4.2 10.3 6.5 12 11Z"/>
+        </svg>
+      </div>
       <div class="foot-right">butterflyeffects.com</div>
     </div>
   </div>
