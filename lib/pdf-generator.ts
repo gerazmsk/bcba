@@ -20,42 +20,38 @@ const TEMPLATE_HTML = `<!doctype html>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root{
-      --brand-blue:#38A0C6;
+      --brand-blue:#37A0C8;
       --accent-coral:#F15A59;
-      --ink:#1E293B;
+      --ink:#1F2937;
       --muted:#6B7280;
       --paper:#FFFFFF;
-      --footer:#111827;
-      --chip-radius:12px;
-      --shadow:0 0 0 1px rgba(0,0,0,.06), 0 6px 18px rgba(0,0,0,.06);
+      --footer:#0F172A;
+      --radius:12px;
+      --shadow:0 0 0 1px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.06);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:var(--paper);color:var(--ink)}
-    .page{padding:26px 28px 20px}
-    h1,h3{margin:0}
-    img{display:block}
-
-    .top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:14px}
+    html,body{margin:0;padding:0;background:var(--paper);color:var(--ink)}
+    body{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif}
+    .page{padding:28px}
+    h1,h2,h3,p{margin:0}
+    img{display:block;max-width:100%}
+    .top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
     .brand{display:flex;align-items:center;gap:10px}
-    .brand-logo{width:165px;height:auto}
-    .meet{margin-top:12px;font-size:12px;color:var(--muted);letter-spacing:.3px}
-    .name{margin-top:6px;font-size:38px;font-weight:800;line-height:1.08}
+    .brand-logo{width:180px;height:auto}
+    .meet{margin-top:14px;font-size:12px;color:var(--muted);letter-spacing:.3px}
+    .name{margin-top:6px;font-size:40px;font-weight:800;line-height:1.05}
     .bcba{margin-top:2px;font-size:26px;font-weight:800;color:var(--brand-blue)}
-    .headshot{width:124px;height:124px;object-fit:cover;border-radius:14px;box-shadow:var(--shadow)}
-
-    .section-title{margin:18px 0 8px;font-weight:700;font-size:16px}
-    .about{font-size:12.6px;line-height:1.55;color:#333;text-align:justify}
-
-    .band{margin-top:22px;background:var(--accent-coral);color:#fff;border-radius:12px;padding:18px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 16px}
+    .headshot-wrap{position:relative}
+    .headshot{width:132px;height:132px;object-fit:cover;border-radius:16px;box-shadow:var(--shadow)}
+    .section-title{margin:22px 0 10px;font-weight:700;font-size:16px}
+    .about{font-size:13px;line-height:1.6;color:#333;text-align:justify}
+    .band{margin-top:24px;background:var(--accent-coral);color:#fff;border-radius:14px;padding:18px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 18px}
     .chip-label{font-size:11px;text-transform:uppercase;opacity:.9;letter-spacing:.35px}
-    .chip-value{margin-top:3px;font-size:16px;font-weight:700;line-height:1.3}
-
-    .footer{margin-top:18px;background:var(--footer);color:#fff;border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+    .chip-value{margin-top:4px;font-size:16px;font-weight:700;line-height:1.25}
+    .footer{margin-top:22px;background:var(--footer);color:#fff;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
     .foot-left{font-size:13px;font-weight:700}
     .foot-right{font-size:12px;opacity:.95}
-
     @page{margin:10mm}
   </style>
 </head>
@@ -70,7 +66,9 @@ const TEMPLATE_HTML = `<!doctype html>
         <h1 class="name">{{first_name}} {{last_name}}</h1>
         <div class="bcba">BCBA</div>
       </div>
-      <img class="headshot" src="{{headshot_url}}" alt="{{first_name}} {{last_name}}" />
+      <div class="headshot-wrap">
+        <img class="headshot" src="{{headshot_url}}" alt="{{first_name}} {{last_name}}" />
+      </div>
     </div>
     <h3 class="section-title">About</h3>
     <div class="about">
