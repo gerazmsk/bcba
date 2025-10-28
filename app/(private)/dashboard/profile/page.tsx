@@ -9,6 +9,9 @@ import Textarea from '@/components/Textarea';
 import Checkbox from '@/components/Checkbox';
 import { validateProfileForm } from '@/lib/validators';
 
+// Prevent static rendering
+export const dynamic = 'force-dynamic';
+
 export default function DashboardProfilePage() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
