@@ -30,6 +30,7 @@ export default function DashboardProfilePage() {
     favorite_food: '',
     is_public: true,
   });
+  const [avatarUrl, setAvatarUrl] = useState('');
   const router = useRouter();
   const supabase = createClientComponentClient();
 
@@ -42,13 +43,31 @@ export default function DashboardProfilePage() {
         return;
       }
 
-      const { data, error } = await supabase
+      let { data, error } = await supabase
         .from('profiles')
         .select('*')
         .eq('id', session.user.id)
         .single();
 
-      if (error) {
+      // If profile doesn't exist, create it
+      if (error && error.code === 'PGRST116') {
+        const { data: newProfile, error: insertError } = await supabase
+          .from('profiles')
+          .insert({
+            id: session.user.id,
+            first_name: 'User',
+            last_name: 'User',
+          })
+          .select()
+          .single();
+        
+        if (insertError) {
+          console.error('Error creating profile:', insertError);
+          setLoading(false);
+          return;
+        }
+        data = newProfile;
+      } else if (error) {
         console.error('Error loading profile:', error);
         setLoading(false);
         return;
@@ -68,6 +87,7 @@ export default function DashboardProfilePage() {
           favorite_food: data.favorite_food || '',
           is_public: data.is_public,
         });
+        setAvatarUrl(data.logo_url || '');
       }
       setLoading(false);
     };
@@ -94,14 +114,35 @@ export default function DashboardProfilePage() {
       return;
     }
 
-    const { error } = await supabase
+    // Check if profile exists
+    const { data: existingProfile } = await supabase
       .from('profiles')
-      .update(formData)
-      .eq('id', session.user.id);
+      .select('id')
+      .eq('id', session.user.id)
+      .single();
+
+    let error;
+    if (existingProfile) {
+      // Update existing profile
+      const { error: updateError } = await supabase
+        .from('profiles')
+        .update(formData)
+        .eq('id', session.user.id);
+      error = updateError;
+    } else {
+      // Create new profile
+      const { error: insertError } = await supabase
+        .from('profiles')
+        .insert({
+          id: session.user.id,
+          ...formData
+        });
+      error = insertError;
+    }
 
     if (error) {
       console.error('Error saving profile:', error);
-      setErrors({ submit: 'Failed to save profile' });
+      setErrors({ submit: `Failed to save profile: ${error.message}` });
     } else {
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
