@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { createServerComponentClient } from '@/lib/supabaseClient';
+import DownloadBioButton from '@/components/DownloadBioButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -60,9 +61,12 @@ export default async function PublicProfilePage({
             <h1 className="text-4xl font-bold text-gray-900 mb-2">
               {profile.first_name} {profile.last_name}
             </h1>
-            <span className="inline-block px-4 py-2 bg-blue-100 text-blue-800 text-lg font-semibold rounded">
+            <span className="inline-block px-4 py-2 bg-blue-100 text-blue-800 text-lg font-semibold rounded mb-4">
               {profile.bcba}
             </span>
+            <div className="mt-6">
+              <DownloadBioButton profile={profile} />
+            </div>
           </div>
 
           <div className="space-y-6">
