@@ -133,7 +133,7 @@ export async function generateBioPDF(profile: Profile): Promise<void> {
   const html = renderHtmlFromProfile(profile, DEFAULT_LOGO);
   
   const opt = {
-    margin: [0, 0, 0, 0],
+    margin: [0, 0, 0, 0] as [number, number, number, number],
     filename: `${profile.first_name}_${profile.last_name}_BIO.pdf`,
     image: { type: 'jpeg' as const, quality: 0.98 },
     html2canvas: { 
