@@ -33,19 +33,19 @@ const TEMPLATE_HTML = `<!doctype html>
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--paper);color:var(--ink)}
     body{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif}
-    .page{max-width:816px;margin:0 auto;padding:28px}
+    .page{width:100%;margin:0;padding:0 40px 0 50px}
     h1,h2,h3,p{margin:0}
-    img{display:block;max-width:100%}
-    .top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:16px}
-    .brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-    .brand-logo{width:180px;height:auto}
-    .meet{margin-top:8px;font-size:12px;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
-    .name{margin-top:8px;font-size:42px;font-weight:700;line-height:1.1;color:#000}
-    .bcba{margin-top:4px;font-size:28px;font-weight:700;color:var(--brand-blue)}
-    .headshot-wrap{position:relative}
-    .headshot{width:140px;height:140px;object-fit:cover;border-radius:16px;box-shadow:var(--shadow)}
-    .section-title{margin:24px 0 12px;font-weight:700;font-size:16px;color:#000}
-    .about{font-size:13px;line-height:1.7;color:#333;text-align:justify;column-count:2;column-gap:20px;column-fill:auto}
+    img{display:block}
+    .top{display:flex;align-items:flex-start;justify-content:space-between;gap:32px;margin-bottom:20px;padding-top:20px}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+    .brand-logo{width:220px;height:auto;display:block}
+    .meet{margin-top:10px;font-size:11px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;font-weight:500}
+    .name{margin-top:10px;font-size:44px;font-weight:600;line-height:1.15;color:#000}
+    .bcba{margin-top:6px;font-size:30px;font-weight:600;color:var(--brand-blue)}
+    .headshot-wrap{position:relative;flex-shrink:0}
+    .headshot{width:160px;height:160px;object-fit:cover;border-radius:18px;box-shadow:var(--shadow)}
+    .section-title{margin:26px 0 14px;font-weight:600;font-size:17px;color:#000}
+    .about{font-size:13.5px;line-height:1.8;color:#333;text-align:justify;column-count:2;column-gap:24px;column-fill:auto}
     .band{margin-top:24px;background:var(--accent-coral);color:#fff;border-radius:14px;padding:20px}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 20px}
     .chip-label{font-size:11px;text-transform:uppercase;opacity:.95;letter-spacing:.4px;font-weight:600}
