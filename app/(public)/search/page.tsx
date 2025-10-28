@@ -13,12 +13,8 @@ export default function SearchPage() {
 
   useEffect(() => {
     const searchProfiles = async () => {
-      if (!query.trim()) {
-        setProfiles([]);
-        return;
-      }
-
       setLoading(true);
+      
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
@@ -27,6 +23,13 @@ export default function SearchPage() {
 
       if (error) {
         console.error('Error searching profiles:', error);
+        setLoading(false);
+        return;
+      }
+
+      if (!query.trim()) {
+        // If no query, show all public profiles
+        setProfiles(data || []);
         setLoading(false);
         return;
       }
@@ -101,9 +104,9 @@ export default function SearchPage() {
         </div>
       )}
 
-      {!loading && !query && (
+      {!loading && !query && profiles.length === 0 && (
         <div className="text-center py-16">
-          <p className="text-gray-600 text-lg">Start typing to search for BCBA profiles...</p>
+          <p className="text-gray-600 text-lg">No public profiles yet. Create your profile to get started!</p>
         </div>
       )}
 
