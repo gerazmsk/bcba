@@ -107,7 +107,6 @@ export default async function PublicProfilePage({
     console.error('Page error:', error);
     notFound();
   }
-
 }
 
 
