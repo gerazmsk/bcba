@@ -130,37 +130,49 @@ function renderHtmlFromProfile(p: Profile, defaultLogo: string) {
 export async function generateBioPDF(profile: Profile): Promise<void> {
   const html = renderHtmlFromProfile(profile, DEFAULT_LOGO);
   
+  const filename = `${profile.first_name}_${profile.last_name}_BIO.pdf`;
+  
   const opt = {
-    margin: [0, 0, 0, 0] as [number, number, number, number],
-    filename: `${profile.first_name}_${profile.last_name}_BIO.pdf`,
-    image: { type: 'jpeg' as const, quality: 0.98 },
+    margin: 0 as const,
+    filename,
+    image: { type: 'jpeg' as const, quality: 0.95 },
     html2canvas: { 
       scale: 2,
       useCORS: true,
+      allowTaint: false,
       logging: false,
-      letterRendering: true
+      letterRendering: true,
+      width: 794, // A4 width in pixels at 96 DPI
+      height: 1123 // A4 height
     },
     jsPDF: { 
-      unit: 'mm', 
-      format: 'a4', 
+      unit: 'mm' as const, 
+      format: 'a4' as const, 
       orientation: 'portrait' as const 
     }
   };
 
+  // Create a visible container first to render properly
   const element = document.createElement('div');
-  element.innerHTML = html;
-  element.style.position = 'absolute';
-  element.style.left = '-9999px';
-  element.style.width = '210mm';
+  element.style.position = 'fixed';
+  element.style.top = '0';
+  element.style.left = '0';
+  element.style.width = '794px';
+  element.style.height = '1123px';
   element.style.padding = '0';
+  element.style.margin = '0';
+  element.style.overflow = 'hidden';
+  element.style.zIndex = '9999';
+  element.style.background = 'white';
+  element.innerHTML = html;
+  
   document.body.appendChild(element);
 
-  // Wait a bit for images to load
-  await new Promise(resolve => setTimeout(resolve, 500));
+  // Wait for rendering
+  await new Promise(resolve => setTimeout(resolve, 1000));
 
   try {
-    const worker = html2pdf().set(opt).from(element);
-    await worker.save();
+    await html2pdf().set(opt).from(element).save();
   } catch (error) {
     console.error('PDF generation error:', error);
     throw error;
