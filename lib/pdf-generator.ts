@@ -46,8 +46,8 @@ const TEMPLATE_HTML = `<!doctype html>
     .headshot{width:180px;height:180px;object-fit:cover;border-radius:16px;box-shadow:var(--shadow)}
     .section-title{margin:20px 0 12px;font-weight:700;font-size:16px}
     .about{width:612px;height:279px;font-size:13px;line-height:1.6;color:#333;text-align:justify;column-count:2;column-gap:20px;column-fill:auto;overflow:hidden}
-    .band{width:612px;height:258px;margin-top:20px;background:var(--accent-coral);color:#fff;border-radius:14px;padding:20px;display:flex;align-items:center}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 20px}
+    .band{width:612px;height:258px;margin-top:20px;background:var(--accent-coral);color:#fff;border-radius:14px;padding:20px;overflow:hidden}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 20px;height:100%;width:100%}
     .chip-label{font-size:10px;text-transform:uppercase;opacity:.95;letter-spacing:.4px;font-weight:600}
     .chip-value{margin-top:4px;font-size:15px;font-weight:700;line-height:1.3}
     .footer{margin-top:20px;background:var(--footer);color:#fff;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
