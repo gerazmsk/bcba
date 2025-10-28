@@ -147,7 +147,7 @@ export async function generateBioPDF(profile: Profile): Promise<void> {
     },
     jsPDF: { 
       unit: 'mm' as const, 
-      format: [216, 279], // Letter size in mm (8.5" x 11")
+      format: [216, 279] as [number, number], // Letter size in mm (8.5" x 11")
       orientation: 'portrait' as const 
     }
   };
