@@ -156,9 +156,9 @@ export async function generateBioPDF(profile: Profile): Promise<void> {
   const element = document.createElement('div');
   element.style.position = 'fixed';
   element.style.top = '0';
-  element.style.left = '0';
-  element.style.width = '100%';
-  element.style.maxWidth = '816px';
+  element.style.left = '50%';
+  element.style.transform = 'translateX(-50%)';
+  element.style.width = '816px';
   element.style.height = '1056px';
   element.style.padding = '0';
   element.style.overflow = 'hidden';
