@@ -19,7 +19,7 @@ const TEMPLATE_HTML = `<!doctype html>
   <title>{{first_name}} {{last_name}} — BIO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root{
+    :root {
       --ink:#2B2936;
       --text:#333741;
       --muted:#8A8FA0;
@@ -31,43 +31,46 @@ const TEMPLATE_HTML = `<!doctype html>
       --shadow:0 10px 24px rgba(0,0,0,.06);
       --maxw:860px;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--paper);color:var(--text)}
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,"Noto Sans",sans-serif}
-    .page{margin:0 auto;max-width:var(--maxw);padding:28px 28px 22px}
-    img{display:block;max-width:100%}
-    h1,h2,h3,p{margin:0}
-    .header{display:grid;grid-template-columns:1fr auto;align-items:start;gap:24px;margin-bottom:18px}
-    .logo{width:190px;height:auto}
-    .meet{margin-top:12px;font-size:12px;color:var(--muted);letter-spacing:.3px}
-    .name{margin-top:6px;font-size:44px;line-height:1.04;font-weight:800;color:var(--ink)}
-    .bcba{margin-top:4px;font-size:28px;font-weight:800;color:var(--ink)}
-    .bcba strong{color:var(--bcba)}
-    .portrait{width:140px;height:140px;object-fit:cover;border-radius:16px;box-shadow:var(--shadow)}
-    .section-title{margin:18px 0 10px;font-weight:800;color:var(--ink)}
-    .about{column-count:2;column-gap:28px;font-size:13px;line-height:1.6;text-align:justify}
-    @media (max-width:720px){.about{column-count:1}}
-    .band{margin-top:24px;background:var(--band);color:#fff;border-radius:var(--radius);padding:22px}
-    .grid{display:grid;gap:20px 24px;grid-template-columns:repeat(3,1fr)}
-    @media (max-width:720px){.grid{grid-template-columns:1fr}}
-    .chip-label{font-size:12px;text-transform:uppercase;letter-spacing:.4px;opacity:.95}
-    .chip-value{margin-top:6px;font-size:20px;line-height:1.25;font-weight:800}
-    .footer{margin-top:26px;background:var(--footer);color:#fff;border-radius:10px;padding:12px 16px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
-    .foot-left{font-weight:800;font-size:14px}
-    .foot-center{display:flex;align-items:center;justify-content:center}
-    .foot-right{justify-self:end;font-size:13px}
-    .butterfly{width:20px;height:20px;fill:#fff;opacity:.95}
-    @page{margin:10mm}
+
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;background:var(--paper);color:var(--text);}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,"Noto Sans",sans-serif;}
+    .page{margin:0 auto;max-width:var(--maxw);padding:36px 36px 22px;}
+    img{display:block;max-width:100%;}
+    h1,h2,h3,p{margin:0;}
+    .header{display:grid;grid-template-columns:1fr auto;align-items:start;gap:24px;margin-bottom:18px;}
+    .logo-wrap{margin-bottom:8px;}
+    .logo{width:200px;height:auto;}
+    .meet{margin-top:4px;font-size:12px;color:var(--muted);letter-spacing:.3px;}
+    .name{margin-top:8px;font-size:44px;line-height:1.04;font-weight:800;color:var(--ink);}
+    .bcba{margin-top:4px;font-size:28px;font-weight:800;color:var(--bcba);}
+    .portrait{width:140px;height:140px;object-fit:cover;border-radius:16px;box-shadow:var(--shadow);margin-top:10px;}
+    .section-title{margin:24px 0 10px;font-weight:800;color:var(--ink);}
+    .about{column-count:2;column-gap:28px;font-size:13px;line-height:1.6;text-align:justify;}
+    @media (max-width:720px){.about{column-count:1;}}
+    .band{margin-top:24px;background:var(--band);color:#fff;border-radius:var(--radius);padding:22px;}
+    .grid{display:grid;gap:20px 24px;grid-template-columns:repeat(3,1fr);}
+    @media (max-width:720px){.grid{grid-template-columns:1fr;}}
+    .chip-label{font-size:12px;text-transform:uppercase;letter-spacing:.4px;opacity:.95;}
+    .chip-value{margin-top:6px;font-size:20px;line-height:1.25;font-weight:800;}
+    .footer{margin-top:26px;background:var(--footer);color:#fff;border-radius:10px;padding:12px 16px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;}
+    .foot-left{font-weight:800;font-size:14px;}
+    .foot-center{display:flex;align-items:center;justify-content:center;}
+    .foot-right{justify-self:end;font-size:13px;}
+    .butterfly{width:20px;height:20px;fill:#fff;opacity:.95;}
+    @page{margin:10mm;}
   </style>
 </head>
 <body>
   <div class="page">
     <div class="header">
       <div>
-        <img class="logo" src="{{logo_url}}" alt="Butterfly Effects logo" />
+        <div class="logo-wrap">
+          <img class="logo" src="{{logo_url}}" alt="Butterfly Effects logo" />
+        </div>
         <div class="meet">Meet your therapist</div>
         <h1 class="name">{{first_name}} {{last_name}}</h1>
-        <div class="bcba"><strong>BCBA</strong></div>
+        <div class="bcba">BCBA</div>
       </div>
       <img class="portrait" src="{{headshot_url}}" alt="{{first_name}} {{last_name}}" />
     </div>
