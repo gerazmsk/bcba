@@ -31,8 +31,45 @@ export default function DashboardProfilePage() {
     is_public: true,
   });
   const [avatarUrl, setAvatarUrl] = useState('');
+  const [uploading, setUploading] = useState(false);
   const router = useRouter();
   const supabase = createClientComponentClient();
+
+  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      setUploading(true);
+      if (!e.target.files || e.target.files.length === 0) {
+        setUploading(false);
+        return;
+      }
+
+      const file = e.target.files[0];
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const filePath = `avatars/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('profiles')
+        .upload(filePath, file);
+
+      if (uploadError) {
+        console.error('Upload error:', uploadError);
+        setErrors({ submit: 'Failed to upload photo' });
+        setUploading(false);
+        return;
+      }
+
+      const { data } = supabase.storage
+        .from('profiles')
+        .getPublicUrl(filePath);
+
+      setAvatarUrl(data.publicUrl);
+      setUploading(false);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      setUploading(false);
+    }
+  };
 
   useEffect(() => {
     const loadProfile = async () => {
@@ -189,14 +226,32 @@ export default function DashboardProfilePage() {
                 e.currentTarget.src = 'https://cdn.example.com/default-logo.png';
               }}
             />
+            
+            <div className="flex flex-col items-center gap-2">
+              <label className="cursor-pointer">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handlePhotoUpload}
+                  disabled={uploading}
+                  className="hidden"
+                  id="photo-upload"
+                />
+                <span className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors inline-block">
+                  {uploading ? 'Uploading...' : 'Upload Photo'}
+                </span>
+              </label>
+              <p className="text-sm text-gray-500">Or paste a photo URL below</p>
+            </div>
+
             <Input
               type="url"
               label="Profile Photo URL (optional)"
               value={avatarUrl}
               onChange={(e) => setAvatarUrl(e.target.value)}
               placeholder="https://example.com/your-photo.jpg"
+              className="w-full"
             />
-            <p className="text-sm text-gray-500">Paste a direct URL to your photo</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
