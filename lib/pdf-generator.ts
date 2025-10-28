@@ -37,14 +37,14 @@ const TEMPLATE_HTML = `<!doctype html>
     img{display:block;max-width:100%}
     .top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
     .brand{display:flex;align-items:center;gap:10px}
-    .brand-logo{width:180px;height:auto}
+    .brand-logo{width:220px;height:auto}
     .meet{margin-top:14px;font-size:12px;color:var(--muted);letter-spacing:.3px}
-    .name{margin-top:6px;font-size:40px;font-weight:800;line-height:1.05}
-    .bcba{margin-top:2px;font-size:26px;font-weight:800;color:var(--brand-blue)}
+    .name{margin-top:8px;font-size:44px;font-weight:800;line-height:1.05}
+    .bcba{margin-top:4px;font-size:28px;font-weight:800;color:var(--brand-blue)}
     .headshot-wrap{position:relative}
-    .headshot{width:132px;height:132px;object-fit:cover;border-radius:16px;box-shadow:var(--shadow)}
+    .headshot{width:180px;height:180px;object-fit:cover;border-radius:16px;box-shadow:var(--shadow)}
     .section-title{margin:22px 0 10px;font-weight:700;font-size:16px}
-    .about{font-size:13px;line-height:1.6;color:#333;text-align:justify}
+    .about{font-size:13px;line-height:1.7;color:#333;text-align:justify;column-count:2;column-gap:22px;column-fill:auto}
     .band{margin-top:24px;background:var(--accent-coral);color:#fff;border-radius:14px;padding:18px}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 18px}
     .chip-label{font-size:11px;text-transform:uppercase;opacity:.9;letter-spacing:.35px}
