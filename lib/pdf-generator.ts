@@ -152,21 +152,31 @@ export async function generateBioPDF(profile: Profile): Promise<void> {
     }
   };
 
-  // Create a visible container first to render properly
+  // Create a wrapper to ensure proper centering
+  const wrapper = document.createElement('div');
+  wrapper.style.position = 'fixed';
+  wrapper.style.top = '0';
+  wrapper.style.left = '0';
+  wrapper.style.right = '0';
+  wrapper.style.bottom = '0';
+  wrapper.style.display = 'flex';
+  wrapper.style.alignItems = 'flex-start';
+  wrapper.style.justifyContent = 'center';
+  wrapper.style.paddingTop = '20px';
+  wrapper.style.background = '#f0f0f0';
+  wrapper.style.zIndex = '9999';
+  
   const element = document.createElement('div');
-  element.style.position = 'absolute';
-  element.style.top = '50%';
-  element.style.left = '50%';
-  element.style.transform = 'translate(-50%, -50%)';
   element.style.width = '816px';
   element.style.height = '1056px';
   element.style.padding = '0';
   element.style.overflow = 'hidden';
-  element.style.zIndex = '9999';
   element.style.background = 'white';
   element.innerHTML = html;
   
-  document.body.appendChild(element);
+  wrapper.appendChild(element);
+  
+  document.body.appendChild(wrapper);
 
   // Wait for rendering
   await new Promise(resolve => setTimeout(resolve, 1000));
@@ -177,8 +187,8 @@ export async function generateBioPDF(profile: Profile): Promise<void> {
     console.error('PDF generation error:', error);
     throw error;
   } finally {
-    if (document.body.contains(element)) {
-      document.body.removeChild(element);
+    if (document.body.contains(wrapper)) {
+      document.body.removeChild(wrapper);
     }
   }
 }
