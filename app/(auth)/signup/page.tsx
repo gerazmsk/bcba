@@ -23,6 +23,12 @@ export default function SignupPage() {
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          first_name: firstName,
+          last_name: lastName,
+        }
+      }
     });
 
     if (authError) {
@@ -32,19 +38,20 @@ export default function SignupPage() {
     }
 
     if (authData.user) {
+      // Create profile with default values
       const { error: profileError } = await supabase.from('profiles').insert({
         id: authData.user.id,
-        first_name: firstName,
-        last_name: lastName,
+        first_name: firstName || 'User',
+        last_name: lastName || 'User',
       });
 
       if (profileError) {
-        setError('Failed to create profile');
-        console.error(profileError);
-        setLoading(false);
-      } else {
-        router.push('/dashboard/profile');
+        // If profile creation fails, still redirect - they can edit it
+        console.error('Profile error:', profileError);
       }
+      
+      router.push('/dashboard/profile');
+      setLoading(false);
     }
   };
 

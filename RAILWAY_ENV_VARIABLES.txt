@@ -1,0 +1,15 @@
+# Copy these EXACTLY as shown to Railway Environment Variables
+
+Variable Name 1:
+NEXT_PUBLIC_SUPABASE_URL
+
+Variable Value 1:
+https://utbnvtrquhdurakxrvql.supabase.co
+
+
+Variable Name 2:
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+Variable Value 2:
+<<< YOU NEED TO GET THIS FROM SUPABASE API SETTINGS >>>
+
