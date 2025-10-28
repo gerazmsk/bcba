@@ -56,9 +56,6 @@ export default async function PublicProfilePage({
               src={profile.logo_url}
               alt={`${profile.first_name} ${profile.last_name}`}
               className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-              onError={(e) => {
-                e.currentTarget.src = 'https://cdn.example.com/default-logo.png';
-              }}
             />
             <h1 className="text-4xl font-bold text-gray-900 mb-2">
               {profile.first_name} {profile.last_name}
