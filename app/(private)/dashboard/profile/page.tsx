@@ -186,6 +186,7 @@ export default function DashboardProfilePage() {
       setErrors({ submit: `Failed to save profile: ${error.message}` });
     } else {
       setSuccess(true);
+      console.log('Profile saved successfully with data:', formData);
       setTimeout(() => setSuccess(false), 3000);
     }
 
