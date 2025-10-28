@@ -11,10 +11,16 @@ export default async function PublicProfilePage({
     .from('profiles')
     .select('*')
     .eq('id', params.id)
-    .eq('is_public', true)
     .single();
 
+  // Check if profile exists and is public
   if (error || !profile) {
+    console.log('Profile not found:', error);
+    notFound();
+  }
+
+  if (!profile.is_public) {
+    console.log('Profile is private');
     notFound();
   }
 
