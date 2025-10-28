@@ -1,7 +1,7 @@
 import html2pdf from 'html2pdf.js';
 import { Profile } from './types';
 
-const DEFAULT_LOGO = 'https://cdn.example.com/brand/default-logo.png';
+const DEFAULT_LOGO = 'https://utbnvtrquhdurakxrvql.supabase.co/storage/v1/object/public/profiles/Butterfly-Effects-20-Year-Anniversary.svg';
 
 function esc(v?: string | null) {
   return (v ?? "")
