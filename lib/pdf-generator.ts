@@ -32,24 +32,25 @@ const TEMPLATE_HTML = `<!doctype html>
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--paper);color:var(--ink)}
     body{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif}
-    .page{padding:28px}
+    .page{width:612px;padding:20px;margin:0 auto;box-sizing:border-box}
     h1,h2,h3,p{margin:0}
-    img{display:block;max-width:100%}
-    .top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
-    .brand{display:flex;align-items:center;gap:10px}
-    .brand-logo{width:220px;height:auto}
-    .meet{margin-top:14px;font-size:12px;color:var(--muted);letter-spacing:.3px}
-    .name{margin-top:8px;font-size:44px;font-weight:800;line-height:1.05}
-    .bcba{margin-top:4px;font-size:28px;font-weight:800;color:var(--brand-blue)}
-    .headshot-wrap{position:relative}
+    img{display:block}
+    .top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:20px}
+    .brand{width:255px;height:99px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .brand-logo{width:255px;height:99px;object-fit:contain}
+    .name-section{width:306px;height:128px;display:flex;flex-direction:column;justify-content:center}
+    .meet{margin-top:8px;font-size:11px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
+    .name{margin-top:6px;font-size:36px;font-weight:800;line-height:1.05}
+    .bcba{margin-top:4px;font-size:22px;font-weight:800;color:var(--brand-blue)}
+    .headshot-wrap{width:248px;height:234px;display:flex;align-items:center;justify-content:center}
     .headshot{width:180px;height:180px;object-fit:cover;border-radius:16px;box-shadow:var(--shadow)}
-    .section-title{margin:22px 0 10px;font-weight:700;font-size:16px}
-    .about{font-size:13px;line-height:1.7;color:#333;text-align:justify;column-count:2;column-gap:22px;column-fill:auto}
-    .band{margin-top:24px;background:var(--accent-coral);color:#fff;border-radius:14px;padding:18px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 18px}
-    .chip-label{font-size:11px;text-transform:uppercase;opacity:.9;letter-spacing:.35px}
-    .chip-value{margin-top:4px;font-size:16px;font-weight:700;line-height:1.25}
-    .footer{margin-top:22px;background:var(--footer);color:#fff;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+    .section-title{margin:20px 0 12px;font-weight:700;font-size:16px}
+    .about{width:612px;height:279px;font-size:13px;line-height:1.6;color:#333;text-align:justify;column-count:2;column-gap:20px;column-fill:auto;overflow:hidden}
+    .band{width:612px;height:258px;margin-top:20px;background:var(--accent-coral);color:#fff;border-radius:14px;padding:20px;display:flex;align-items:center}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 20px}
+    .chip-label{font-size:10px;text-transform:uppercase;opacity:.95;letter-spacing:.4px;font-weight:600}
+    .chip-value{margin-top:4px;font-size:15px;font-weight:700;line-height:1.3}
+    .footer{margin-top:20px;background:var(--footer);color:#fff;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
     .foot-left{font-size:13px;font-weight:700}
     .foot-right{font-size:12px;opacity:.95}
     @page{margin:10mm}
@@ -58,10 +59,10 @@ const TEMPLATE_HTML = `<!doctype html>
 <body>
   <div class="page">
     <div class="top">
-      <div>
-        <div class="brand">
-          <img class="brand-logo" src="{{logo_url}}" alt="Brand logo" />
-        </div>
+      <div class="brand">
+        <img class="brand-logo" src="{{logo_url}}" alt="Brand logo" />
+      </div>
+      <div class="name-section">
         <div class="meet">Meet your therapist</div>
         <h1 class="name">{{first_name}} {{last_name}}</h1>
         <div class="bcba">BCBA</div>
